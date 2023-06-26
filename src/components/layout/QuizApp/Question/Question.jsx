@@ -1,6 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import './Question.css';
-import { mainContext } from '../../../../context';
 import { useDispatch } from 'react-redux';
 import {
     answeredFalse,
@@ -15,7 +14,6 @@ const Question = ({
     img,
 }) => {
     const dispatch = useDispatch();
-    const { setScore } = useContext(mainContext);
     const [showAnsQues, setShowAnsQues] = useState(false);
     const [showDesc, setShowDesc] = useState(false);
 
@@ -23,7 +21,6 @@ const Question = ({
         setShowDesc(true);
         if (isCrr) {
             dispatch(answeredRight());
-            setScore((score) => score + 1);
             e.target.parentElement.parentElement.classList.add(
                 'option-item--true'
             );
