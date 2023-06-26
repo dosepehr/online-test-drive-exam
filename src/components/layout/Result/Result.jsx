@@ -1,7 +1,7 @@
-import { useEffect } from 'react-router-';
-import './Result.css';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { examEnded } from '../../../redux/reducers/examSlice';
+import './Result.css';
 function Result({ questionsLength }) {
     const dispatch = useDispatch();
     useEffect(() => {

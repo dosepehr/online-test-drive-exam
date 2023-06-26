@@ -1,6 +1,6 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { Question, Result } from '../../index';
 import { useGetQuestionsQuery } from '../../../redux/reducers/apiSlice';
-import { useDispatch, useSelector } from 'react-redux';
 import { examEnded, examStarted } from '../../../redux/reducers/examSlice';
 import './QuizApp.css';
 

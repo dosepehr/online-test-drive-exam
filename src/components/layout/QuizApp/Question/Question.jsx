@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import './Question.css';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
     answeredFalse,
     answeredRight,
 } from '../../../../redux/reducers/examSlice';
+import './Question.css';
 const Question = ({
     id,
     questionTitle,
