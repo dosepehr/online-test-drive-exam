@@ -1,12 +1,10 @@
-import { useContext } from 'react';
 import './Result.css';
 import { questions } from '../../../constants/questionsData';
-import { mainContext } from '../../../context';
 import { useSelector } from 'react-redux';
 function Result() {
     const exam = useSelector((state) => state.exam);
-    const { correctAnswer, wrongAnswer } = useContext(mainContext);
-    const { startTime, endTime } = exam;
+    const { startTime, endTime, correctAnswers, wrongAnswers } = exam;
+    console.log(wrongAnswers, correctAnswers);
     const secondBetweenTwoDate =
         Math.floor(Math.abs((endTime - startTime) / 1000)) % 60;
 
@@ -19,23 +17,23 @@ function Result() {
                 <p className='resualt-title'>نتایج آزمون شما</p>
                 <div className='answers-count-box'>
                     <p className='answers-desc'>پاسخ درست :</p>
-                    <p className='answers-count'>{correctAnswer}</p>
+                    <p className='answers-count'>{correctAnswers}</p>
                 </div>
 
                 <div className='answers-count-box'>
                     <p className='answers-desc'>پاسخ نادرست :</p>
-                    <p className='answers-count'>{wrongAnswer}</p>
+                    <p className='answers-count'>{wrongAnswers}</p>
                 </div>
 
                 <div className='answers-count-box'>
                     <p className='answers-desc'>تعداد بی پاسخ :</p>
                     <p className='answers-count'>
-                        {questions.length - (correctAnswer + wrongAnswer)}
+                        {questions.length - (correctAnswers + wrongAnswers)}
                     </p>
                 </div>
                 <div className='answers-count-box'>
                     <p className='answers-desc'>وضعیت قبولی :</p>
-                    {correctAnswer >= 26 ? (
+                    {correctAnswers >= 26 ? (
                         <>
                             <p className='answers-count answers-count--accept'>
                                 قبول

@@ -10,8 +10,7 @@ import { examEnded } from '../../../redux/reducers/examSlice';
 const QuizApp = () => {
     const dispatch = useDispatch();
     const { data } = useGetQuestionsQuery();
-    const { wrongAnswer, correctAnswer, endTime, showExam, startExam } =
-        useContext(mainContext);
+    const { showExam, startExam } = useContext(mainContext);
     const [isFinishExam, setIsFinishExam] = useState(false);
     const endExam = () => {
         setIsFinishExam(true);
@@ -29,11 +28,7 @@ const QuizApp = () => {
                     )}
                     {showExam &&
                         (isFinishExam ? (
-                            <Resualt
-                                endTime={endTime}
-                                correctAnswer={correctAnswer}
-                                wrongAnswer={wrongAnswer}
-                            />
+                            <Resualt />
                         ) : (
                             <>
                                 <div className='quiz-app-wrapper'>
