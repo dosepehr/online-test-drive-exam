@@ -1,17 +1,16 @@
-import { useEffect, useContext } from 'react';
-import { mainContext } from '../../../context';
+import { useEffect, useState } from 'react';
 import './HamIcon.css';
 
-function HamIcon(props) {
-    const { hamIconIsShow, setHamIconIsShow } = useContext(mainContext);
+function HamIcon({ onShow }) {
+    const [hamIconIsShow, setHamIconIsShow] = useState(false);
 
     const openHamIconHandler = () => {
         setHamIconIsShow(!hamIconIsShow);
     };
 
     useEffect(() => {
-        props.onShow(hamIconIsShow);
-    }, [hamIconIsShow]);
+        onShow(hamIconIsShow);
+    }, [hamIconIsShow, onShow]);
 
     return (
         <>

@@ -1,10 +1,9 @@
-import { useContext } from 'react';
+import { useState } from 'react';
 import { HamIcon } from '../../index';
-import { mainContext } from '../../../context';
 import './Header.css';
 
 const Header = () => {
-    const { isShowNav, setIsShowNav } = useContext(mainContext);
+    const [isShowNav, setIsShowNav] = useState(false);
 
     const showNavbarHandler = (isShow) => {
         setIsShowNav(isShow);
