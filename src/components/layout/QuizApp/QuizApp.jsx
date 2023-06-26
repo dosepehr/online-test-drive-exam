@@ -4,21 +4,18 @@ import { Question, Resualt } from '../../index';
 import { useContext } from 'react';
 import { mainContext } from '../../../context';
 import { useGetQuestionsQuery } from '../../../redux/reducers/apiSlice';
+import { useDispatch } from 'react-redux';
+import { examEnded } from '../../../redux/reducers/examSlice';
 
 const QuizApp = () => {
+    const dispatch = useDispatch();
     const { data } = useGetQuestionsQuery();
-    const {
-        wrongAnswer,
-        correctAnswer,
-        endTime,
-        setEndTime,
-        showExam,
-        startExam,
-    } = useContext(mainContext);
+    const { wrongAnswer, correctAnswer, endTime, showExam, startExam } =
+        useContext(mainContext);
     const [isFinishExam, setIsFinishExam] = useState(false);
     const endExam = () => {
         setIsFinishExam(true);
-        setEndTime(new Date().getTime());
+        dispatch(examEnded(new Date().getTime()));
     };
 
     return (

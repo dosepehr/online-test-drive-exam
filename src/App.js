@@ -2,13 +2,15 @@ import { useState } from 'react';
 import { Header, QuizApp, Footer } from './components';
 import { mainContext } from './context';
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { examStarted } from './redux/reducers/examSlice';
 const App = () => {
+    const dispatch = useDispatch();
     const [menuOpen, setMenuOpen] = useState(false);
     const [score, setScore] = useState(0);
     const [correctAnswer, setCorrectAnswer] = useState(0);
     const [wrongAnswer, setWrongAnswer] = useState(0);
     const [showExam, setShowExam] = useState(false);
-    const [startTime, setStartTime] = useState(0);
     const [endTime, setEndTime] = useState(0);
     const [hamIconIsShow, setHamIconIsShow] = useState(false);
     const [isShowNav, setIsShowNav] = useState(false);
@@ -16,7 +18,7 @@ const App = () => {
 
     const startExam = () => {
         setShowExam(true);
-        setStartTime(new Date().getTime());
+        dispatch(examStarted(new Date().getTime()));
     };
 
     return (
@@ -31,7 +33,6 @@ const App = () => {
                     setCorrectAnswer,
                     wrongAnswer,
                     setWrongAnswer,
-                    startTime,
                     endTime,
                     setEndTime,
                     showExam,
