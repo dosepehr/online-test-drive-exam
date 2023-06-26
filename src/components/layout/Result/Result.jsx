@@ -1,10 +1,15 @@
+import { useEffect } from 'react-router-';
 import './Result.css';
-import { questions } from '../../../constants/questionsData';
-import { useSelector } from 'react-redux';
-function Result() {
-    const exam = useSelector((state) => state.exam);
-    const { startTime, endTime, correctAnswers, wrongAnswers } = exam;
-    console.log(wrongAnswers, correctAnswers);
+import { useDispatch, useSelector } from 'react-redux';
+import { examEnded } from '../../../redux/reducers/examSlice';
+function Result({ questionsLength }) {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(examEnded(new Date().getTime()));
+    }, [dispatch]);
+    const { startTime, endTime, correctAnswers, wrongAnswers } = useSelector(
+        (state) => state.exam
+    );
     const secondBetweenTwoDate =
         Math.floor(Math.abs((endTime - startTime) / 1000)) % 60;
 
@@ -28,7 +33,7 @@ function Result() {
                 <div className='answers-count-box'>
                     <p className='answers-desc'>تعداد بی پاسخ :</p>
                     <p className='answers-count'>
-                        {questions.length - (correctAnswers + wrongAnswers)}
+                        {questionsLength - (correctAnswers + wrongAnswers)}
                     </p>
                 </div>
                 <div className='answers-count-box'>

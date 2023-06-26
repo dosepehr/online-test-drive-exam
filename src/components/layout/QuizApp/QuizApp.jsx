@@ -6,7 +6,7 @@ import './QuizApp.css';
 
 const QuizApp = () => {
     const dispatch = useDispatch();
-    const { data } = useGetQuestionsQuery();
+    const { data: questions } = useGetQuestionsQuery();
     const { showExam, finnishExam } = useSelector((state) => state.exam);
     const endExam = () => {
         dispatch(examEnded(new Date().getTime()));
@@ -30,11 +30,11 @@ const QuizApp = () => {
                     )}
                     {showExam &&
                         (finnishExam ? (
-                            <Result />
+                            <Result questionsLength={questions?.length} />
                         ) : (
                             <>
                                 <div className='quiz-app-wrapper'>
-                                    {data?.map((question) => (
+                                    {questions?.map((question) => (
                                         <Question
                                             key={question.id}
                                             {...question}
