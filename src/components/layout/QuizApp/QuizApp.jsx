@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
-import './QuizApp.css';
-import { Question, Resualt } from '../../index';
-import { useContext } from 'react';
-import { mainContext } from '../../../context';
+import { Question, Result } from '../../index';
 import { useGetQuestionsQuery } from '../../../redux/reducers/apiSlice';
-import { useDispatch } from 'react-redux';
-import { examEnded } from '../../../redux/reducers/examSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { examEnded, examStarted } from '../../../redux/reducers/examSlice';
+import './QuizApp.css';
 
 const QuizApp = () => {
     const dispatch = useDispatch();
     const { data } = useGetQuestionsQuery();
-    const { showExam, startExam } = useContext(mainContext);
-    const [isFinishExam, setIsFinishExam] = useState(false);
+    const { showExam, finnishExam } = useSelector((state) => state.exam);
     const endExam = () => {
-        setIsFinishExam(true);
         dispatch(examEnded(new Date().getTime()));
+    };
+
+    const startExamHandler = () => {
+        dispatch(examStarted(new Date().getTime()));
     };
 
     return (
@@ -22,13 +21,16 @@ const QuizApp = () => {
             <div className='quiz-app'>
                 <div className='container'>
                     {!showExam && (
-                        <button className='start-quiz-btn' onClick={startExam}>
+                        <button
+                            className='start-quiz-btn'
+                            onClick={startExamHandler}
+                        >
                             شروع آزمون
                         </button>
                     )}
                     {showExam &&
-                        (isFinishExam ? (
-                            <Resualt />
+                        (finnishExam ? (
+                            <Result />
                         ) : (
                             <>
                                 <div className='quiz-app-wrapper'>

@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
+    showExam: false,
+    finnishExam: false,
     startTime: '',
     endTime: '',
     correctAnswers: 0,
@@ -12,9 +14,11 @@ const slice = createSlice({
     initialState,
     reducers: {
         examStarted(state, action) {
+            state.showExam = true;
             state.startTime = action.payload;
         },
         examEnded(state, action) {
+            state.finnishExam = true;
             state.endTime = action.payload;
         },
         answeredRight(state, action) {
