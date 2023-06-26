@@ -12,7 +12,6 @@ const App = () => {
     const [endTime, setEndTime] = useState(0);
     const [hamIconIsShow, setHamIconIsShow] = useState(false);
     const [isShowNav, setIsShowNav] = useState(false);
-    const [questions, setQuestions] = useState([]);
     const [isFinishExam, setIsFinishExam] = useState(false);
 
     const startExam = () => {
@@ -41,8 +40,6 @@ const App = () => {
                     setHamIconIsShow,
                     setIsShowNav,
                     isShowNav,
-                    questions,
-                    setQuestions,
                     isFinishExam,
                     setIsFinishExam,
                 }}
